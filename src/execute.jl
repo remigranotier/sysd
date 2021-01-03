@@ -6,13 +6,13 @@ include("scheduler.jl")
 
 using Distributed
 
-function exec(task::MakeTask)::Array{String}
+function exec(task::MakeTask, targetdir::String)::Array{String}
     # Put Makefile directory in PATH
     println("Making $(task.name) on worker $(myid())")
     contentDirBefore = readdir()
 
     env = copy(ENV)
-    env["PATH"] = "$(pwd()):$(env["PATH"])"
+    env["PATH"] = "$(targetdir):$(env["PATH"])"
     cmd = Cmd(`sh -c $(task.command)`, env=env)
     run(cmd)
 

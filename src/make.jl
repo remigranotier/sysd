@@ -40,7 +40,7 @@ function main()
         println("There is no Makefile in this directory")
         println("Aborting...")
     else
-        # cd ARGS[1]
+        cd(ARGS[1])
         tasks = MakeBackend.parsing(ARGS[1])
         # display(tasks)
     end

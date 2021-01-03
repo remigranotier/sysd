@@ -49,7 +49,7 @@ end
 
 function schedule_tasks(tasks_to_do::Dict{String, MakeTask})
     # Rend les fichiers julia disponibles sur les workers
-    run(`scp $(readdir()) gautier@192.168.0.17:/home/gautier/sysd`)
+    ## run(`scp $(readdir()) gautier@192.168.0.17:/home/gautier/sysd`)
     wait_for_dependencies, to_do, done = MakeBackend.init_task_lists(tasks_to_do)
 
     # Channel is used to communicate with functions run asynchronously

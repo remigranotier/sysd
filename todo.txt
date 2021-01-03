@@ -1,0 +1,9 @@
+- Scripts bash pour setup le master node
+(install julia (sudo-g5k apt-get install julia), récup ip workers (uniq $OAR_NODEFILE))
+ALLOW NORMAL SSH
+
+https://intranet.grid5000.fr/oar/Lille/monika.cgi
+
+git clone https://github.com/remigranotier/sysd.git
+
+- code sur github public

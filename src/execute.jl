@@ -31,14 +31,14 @@ function exec_task_on_worker(
     # Copie des fichiers utiles sur l'esclave
     # TODO: faire un diff avec les fichiers déjà présents sur l'esclave
     if !isempty(todoTask.dependenciesStatic)
-        run(`scp $(todoTask.dependenciesStatic) gautier@192.168.0.17:/home/gautier/sysd`)
+        ## run(`scp $(todoTask.dependenciesStatic) gautier@192.168.0.17:/home/gautier/sysd`)
     end 
 
     files_created = remotecall_fetch(exec, worker_id, todoTask)
     
     # Copie des fichiers créés
     if !isempty(files_created)
-        run(`scp gautier@192.168.0.17:/home/gautier/sysd/$files_created .`)
+        ## run(`scp gautier@192.168.0.17:/home/gautier/sysd/$files_created .`)
     end
     todoTask.done = true
     
@@ -56,7 +56,7 @@ function clusterStart()
     # workersTab = [("gautier@192.168.0.17:22",1)] 
     # addprocs(workersTab ; sshflags=`-i /home/gautier/.ssh/id_rsa`, dir="/home/gautier/sysd", tunnel=true, exename=`/usr/bin/julia`)
 
-    run(`scp -r $(pwd()) gautier@192.168.0.17:/home/gautier/sysd`)
+    ## run(`scp -r $(pwd()) gautier@192.168.0.17:/home/gautier/sysd`)
 end
 
 end

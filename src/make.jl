@@ -5,13 +5,21 @@ using Distributed
 #TODO: mettre dans machinefile
 # Pour l'instant, les ips/username pour ssh sont en dur car on execute en local,
 # ce sera changé pour grid5000
-run(`scp $(readdir("/home/gautier/sysd_g3/src")) gautier@192.168.0.17:/home/gautier/sysd`)
-workersTab = [("gautier@192.168.0.17:22",2)] 
+
+fileName::String = "/home/rgranotier/hosts.txt"
+workersTab = []
+open(fileName) do file
+    for (i, line) in enumerate(eachline(file))
+        push!(workersTab, (line, 1))
+
+
+# run(`scp $(readdir("/home/gautier/sysd_g3/src")) gautier@192.168.0.17:/home/gautier/sysd`)
+# workersTab = [("gautier@192.168.0.17:22",2)] 
 addprocs(   workersTab;
-            sshflags=`-i /home/gautier/.ssh/id_rsa`,
-            dir="/home/gautier/sysd",
+            sshflags=`-i /home/rgranotier/.ssh/id_rsa`,
+            dir="/home/rgranotier/sysd",
             tunnel=true,
-            exename=`/home/gautier/bin/julia-1.5.3/bin/julia`)
+            exename=`/usr/bin/julia`)
 
 include("execute.jl")
 @everywhere include("execute.jl")

@@ -18,7 +18,7 @@ end
 # workersTab = [("gautier@192.168.0.17:22",2)] 
 addprocs(   workersTab;
             sshflags=`-i /home/rgranotier/.ssh/id_rsa`,
-            dir="/home/rgranotier/sysd/src",
+            dir="/home/rgranotier/sysd/",
             tunnel=true,
             exename=`/usr/bin/julia`)
 

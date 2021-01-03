@@ -8,7 +8,7 @@ using Distributed
 
 function exec(task::MakeTask, dirName::String)::Array{String}
     # Put Makefile directory in PATH
-    cd()
+    cd(dirName)
 
     println("Making $(task.name) on worker $(myid())")
     contentDirBefore = readdir()

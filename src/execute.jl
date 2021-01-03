@@ -36,9 +36,7 @@ function exec_task_on_worker(
     if !isempty(todoTask.dependenciesStatic)
         ## run(`scp $(todoTask.dependenciesStatic) gautier@192.168.0.17:/home/gautier/sysd`)
     end 
-    println("execute:39")
     files_created = remotecall_fetch(exec, worker_id, todoTask, dirName)
-    println("execute:41")
     # Copie des fichiers créés
     if !isempty(files_created)
         ## run(`scp gautier@192.168.0.17:/home/gautier/sysd/$files_created .`)
@@ -47,11 +45,8 @@ function exec_task_on_worker(
     
     # Put task to be put in done
     put!(done_stack, todoTask)
-    println("ecexute:50")
     # Make worker available again
     put!(default_worker_pool(), worker_id)
-    println("ecexute:53")
-    print(default_worker_pool())
 
 end
 

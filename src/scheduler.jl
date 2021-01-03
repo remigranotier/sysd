@@ -57,7 +57,7 @@ function schedule_tasks(tasks_to_do::Dict{String, MakeTask}, dirName::String)
 
     while length(done) != length(tasks_to_do)
         worker_id = take!(default_worker_pool())
-
+        println(worker_id + " is the worker_id")
         # Channel content is used to update state
         while isready(done_stack)
             task_done = take!(done_stack)

@@ -40,7 +40,7 @@ function main()
         println("There is no Makefile in this directory")
         println("Aborting...")
     else
-        cd(ARGS[1])
+        # cd(ARGS[1])
         tasks = MakeBackend.parsing(ARGS[1])
         # display(tasks)
     end
@@ -58,12 +58,12 @@ function main()
     tasks_to_do = MakeBackend.targeted_tasks(target, tasks)
 
     if target=="clean"
-        @sync [@spawnat i MakeBackend.exec(tasks_to_do["clean"]) for i in workers()]
-        MakeBackend.exec(tasks_to_do["clean"])
+        @sync [@spawnat i MakeBackend.exec(tasks_to_do["clean"], ARGS[1]) for i in workers()]
+        MakeBackend.exec(tasks_to_do["clean"], ARGS[1])
         return
     end
 
-    MakeBackend.schedule_tasks(tasks_to_do)
+    MakeBackend.schedule_tasks(tasks_to_do, ARGS[1])
 
 end
 

@@ -47,7 +47,7 @@ function update_task_lists!(wait_for_dependencies::Dict{String, MakeTask}, to_do
 end
 
 
-function schedule_tasks(tasks_to_do::Dict{String, MakeTask})
+function schedule_tasks(tasks_to_do::Dict{String, MakeTask}, dirName::String)
     # Rend les fichiers julia disponibles sur les workers
     ## run(`scp $(readdir()) gautier@192.168.0.17:/home/gautier/sysd`)
     wait_for_dependencies, to_do, done = MakeBackend.init_task_lists(tasks_to_do)
@@ -70,7 +70,7 @@ function schedule_tasks(tasks_to_do::Dict{String, MakeTask})
         end
 
         if next_task !== nothing
-            @async MakeBackend.exec_task_on_worker(worker_id, next_task, done_stack)
+            @async MakeBackend.exec_task_on_worker(worker_id, next_task, done_stack, dirName)
         end
     end
 end

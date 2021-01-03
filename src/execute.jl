@@ -6,8 +6,10 @@ include("scheduler.jl")
 
 using Distributed
 
-function exec(task::MakeTask)::Array{String}
+function exec(task::MakeTask, dirName::String)::Array{String}
     # Put Makefile directory in PATH
+    cd()
+
     println("Making $(task.name) on worker $(myid())")
     contentDirBefore = readdir()
 
@@ -26,6 +28,7 @@ function exec_task_on_worker(
         worker_id,
         todoTask,
         done_stack,
+        dirName
     )
 
     # Copie des fichiers utiles sur l'esclave
@@ -34,7 +37,7 @@ function exec_task_on_worker(
         ## run(`scp $(todoTask.dependenciesStatic) gautier@192.168.0.17:/home/gautier/sysd`)
     end 
 
-    files_created = remotecall_fetch(exec, worker_id, todoTask)
+    files_created = remotecall_fetch(exec, worker_id, todoTask, dirName)
     
     # Copie des fichiers créés
     if !isempty(files_created)

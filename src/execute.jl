@@ -38,7 +38,7 @@ function exec_task_on_worker(
     end 
 
     files_created = remotecall_fetch(exec, worker_id, todoTask, dirName)
-    
+    print("execute:41")
     # Copie des fichiers créés
     if !isempty(files_created)
         ## run(`scp gautier@192.168.0.17:/home/gautier/sysd/$files_created .`)
@@ -47,9 +47,11 @@ function exec_task_on_worker(
     
     # Put task to be put in done
     put!(done_stack, todoTask)
-
+    print("ecexute:50")
     # Make worker available again
     put!(default_worker_pool(), worker_id)
+    print("ecexute:53")
+    default_worker_pool()
 
 end
 

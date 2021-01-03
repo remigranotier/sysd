@@ -1,0 +1,19 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Launch parser on premier/Makefile",
+            "command": "${workspaceFolder}/src/make.jl",
+            "type": "shell",
+            "args": [
+                "${workspaceFolder}/makefiles/premier",
+                "list.txt"
+            ],
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always"
+            },
+            "group": "build"
+        }
+    ]
+}

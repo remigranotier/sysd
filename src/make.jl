@@ -6,7 +6,7 @@ using Distributed
 # Pour l'instant, les ips/username pour ssh sont en dur car on execute en local,
 # ce sera changé pour grid5000
 
-fileName::String = "/home/rgranotier/hosts.txt"
+fileName = "/home/rgranotier/hosts.txt"
 workersTab = []
 open(fileName) do file
     for (i, line) in enumerate(eachline(file))

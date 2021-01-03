@@ -70,6 +70,7 @@ function schedule_tasks(tasks_to_do::Dict{String, MakeTask}, dirName::String)
         end
 
         if next_task !== nothing
+            println("we have a thing to do")
             @async MakeBackend.exec_task_on_worker(worker_id, next_task, done_stack, dirName)
         end
     end

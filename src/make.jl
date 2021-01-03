@@ -11,7 +11,8 @@ workersTab = []
 open(fileName) do file
     for (i, line) in enumerate(eachline(file))
         push!(workersTab, (line, 1))
-
+    end
+end
 
 # run(`scp $(readdir("/home/gautier/sysd_g3/src")) gautier@192.168.0.17:/home/gautier/sysd`)
 # workersTab = [("gautier@192.168.0.17:22",2)] 

@@ -7,3 +7,12 @@ https://intranet.grid5000.fr/oar/Lille/monika.cgi
 git clone https://github.com/remigranotier/sysd.git
 
 - code sur github public
+
+
+
+
+
+
+- PATH (./premier c moche)
+- Lancer script au déploiement (+  --assume-yes)
+- Bloc notes expériences

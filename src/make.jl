@@ -67,5 +67,4 @@ function main()
 
 end
 
-# @time main()
-main()
+@time main()
